@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            background-image: url("bilder/last ned.jpeg");
+        }
+
+        @keyframes lande {
+            0%{
+                left: -20%;
+                bottom: 0%;
+                transform: rotate(90deg);
+            }
+            40%{
+                transform: rotate(-45deg);
+            }
+            100%{
+                left: 80%;
+                bottom: 0%;
+                transform: rotate(0deg);
+            }
+        }
+
+        @keyframes lette {
+            0%{
+                left: 80%;
+                bottom: 0%;
+            }
+            100%{
+                bottom: 500%;
+            }
+        }
+        #spacex{
+            position: absolute;
+        }
+        #btnLande{
+            background-color: white;
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <img id="spacex" src="bilder/spaceX.png" alt="">
+    <button id="btnLande">Lande</button>
+    <button id="btnLette">Lette</button>
+
+    <script>
+        let spacex = document.querySelector("#spacex");
+        let btnLande = document.querySelector("#btnLande");
+        let btnLette = document.querySelector("#btnLette");
+
+        btnLande.onclick = function () {
+            spacex.style.animation = "lande 5s forwards";
+        }
+        btnLette.onclick = function () {
+            spacex.style.animation = "lette 5s forwards";
+        }
+    </script>
+</body>
+</html>

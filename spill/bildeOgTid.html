@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nb" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      body{
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas width="1000" height="1000"></canvas>
+
+    <script>
+      const canvas = document.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+
+
+
+      let bilde = new Image;
+      bilde.src = "yang2020.png";
+
+      //ctx.fillRect(10,10,50,60);
+      ctx.drawImage(bilde,10,10,200,200);
+    let poeng = 16892452.056852;
+
+    window.onmousemove = function(event){
+        console.log(event.clientX);
+        console.log(event.clientY);
+    }
+
+      let startTid = new Date; // Global variabel som henter datoen når siden lastes
+      let startSekund = startTid.getTime(); // Henter ut tiden i sekunder
+
+      function gameloop(){
+
+          let frameDato = new Date; // Lokal variabel som henter datoen idet framen kjører
+          let frameSekund = frameDato.getTime(); // Henter ut tiden i sekunder
+
+          let tidPassert = (frameSekund-startSekund)/1000; // Tid som har gått siden starten
+          //console.log(tidPassert.toFixed(0)); // Logger tiden som har gått
+          requestAnimationFrame(gameloop);
+
+
+
+
+          document.body.innerHTML = `Poeng: ${poeng.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,',')}`
+      }
+
+      gameloop();
+
+    </script>
+  </body>
+</html>

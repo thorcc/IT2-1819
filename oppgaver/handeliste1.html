@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <label>Vare:</label>
+    <input id="inpVare" type="text">
+    <label>Pris:</label>
+    <input id="inpPris" type="number">
+
+    <div>
+        <ol id="liste">
+
+        </ol>
+    </div>
+
+    <script>
+        const inpVare = document.querySelector("#inpVare");
+        const inpPris = document.querySelector("#inpPris");
+        const liste = document.querySelector("#liste");
+
+        let vare = [];
+        let pris = [];
+
+        window.onkeydown = function (event){
+            console.log(event);
+            if(event.key === "Enter"){
+                vare.push(inpVare.value);
+                pris.push(inpPris.value);
+                liste.innerHTML = ``;
+                for (let i = 0; i < vare.length; i++){
+                    liste.innerHTML += `<li>${vare[i]} - ${pris[i]}kr</li>`;
+                }
+            }
+        }
+
+        function skrivVarerTilListe(){
+            for (let i = 0; i < vare.length; i++){
+                liste.innerHTML += `<li>${vare[i]} - ${pris[i]}</li>`;
+            }
+        }
+
+    </script>
+
+</body>
+</html>

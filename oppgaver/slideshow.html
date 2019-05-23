@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div>
+        <img id="imgBilde" src="" alt="">
+    </div>
+
+    <button id="btnNeste">Neste bilde</button>
+
+    <script>
+        const btnNeste = document.querySelector("#btnNeste");
+        const imgBilde = document.querySelector("#imgBilde");
+
+        let bilder = ["bilder/bilde1.jpeg","bilder/bilde2.jpg","bilder/bilde3.jpg"];
+
+        imgBilde.src = bilder[2];
+
+        let bildeTeller = 0;
+
+        btnNeste.onclick = function(){
+
+            if(bildeTeller>bilder.length-1){
+               bildeTeller = 0;
+            }
+            else{
+                bildeTeller = bildeTeller + 1;
+            }
+
+            imgBilde.src = bilder[bildeTeller];
+        }
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <p>Canvas:</p>
+    <button type="button" name="button" onclick="play()">Play</button>
+    <canvas id=c></canvas>
+
+    <video id="bard" src="bard.mp4" autoplay style="display:none">
+
+    </video>
+
+    <script>
+      const canvas = document.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+      const video = document.querySelector("video");
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+
+      let x = 0, y = 0;
+      function play(){
+
+        function step() {
+          ctx.drawImage(video, x, y, canvas.width, canvas.height)
+          x++;
+          y++;
+          requestAnimationFrame(step)
+        }
+        requestAnimationFrame(step);
+      }
+
+        /*
+        let img = new Image;
+        img.onload = draw;
+        img.src = "dvd.png";
+        var ctx = c.getContext("2d");
+
+        function draw() {
+            // draw image
+            ctx.drawImage(this, 0, 0);
+
+            // set composite mode
+            ctx.globalCompositeOperation = "source-in";
+
+            // draw color
+            ctx.fillStyle = "blue";
+            ctx.fillRect(0, 0, c.width, c.height);
+            ctx.globalCompositeOperation = "source-over";
+        }*/
+    </script>
+
+</body>
+</html>

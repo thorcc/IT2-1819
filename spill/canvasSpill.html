@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvasspill</title>
+    <style>
+        body{
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="spillCanvas" width="400px" height="100px"></canvas>
+
+    <script>
+        // Referanser til HTML-elementer
+        let spillCanvas = document.querySelector("#spillCanvas");
+        let ctx = spillCanvas.getContext("2d");
+
+        // Globale variabler
+        let firkant = {
+            bredde:50,
+            hoyde:50,
+            farge:"DarkGreen",
+            xpos:5,
+            ypos:2,
+            xfart:0,
+            xretning:0,
+            yfart:0,
+            yretning:0
+        };
+
+        let bakgrunnsfarge = "LightBlue";
+
+
+        //Setup
+        gameLoop(); // Starter funksjonen gameLoop når nettsiden lastes
+
+        // Funksjonsdefinisjoner
+
+        function gameLoop(){
+            clearCanvas(); // Fjerner alt på canvaset
+            flyttFirkant(); // Flytter firkanten
+            tegnFirkant(); // Tegner firkanten
+            requestAnimationFrame(gameLoop); // Lager en evig loop med forsinkelse.
+        }
+
+        function clearCanvas(){
+            // Funksjon som tegner en firkant med bakgrunnsfargen som dekker hele canvaset.
+            ctx.fillStyle = bakgrunnsfarge;
+            ctx.fillRect(0,0,spillCanvas.width,spillCanvas.height);
+        }
+
+        function tegnFirkant(){
+            // Funksjon som tegner en firkant
+            ctx.fillStyle = firkant.farge;
+            ctx.fillRect(firkant.xpos, firkant.ypos, firkant.bredde, firkant.hoyde);
+        }
+
+
+        function flyttFirkant(){
+            // Funksjon som oppdaterer xpos og ypos til objektet firkant
+
+            /* Sjekker først om firkanter treffer kanten på canvaset,
+             hvis den gjør det snur den retning. */
+            if(firkant.xpos <=0){
+                firkant.xretning = 1;
+            }
+            if(firkant.xpos+firkant.bredde >= spillCanvas.width){
+                firkant.xretning = -1;
+            }
+
+            if(firkant.ypos <=0){
+                firkant.yretning = 1;
+            }
+            if(firkant.ypos+firkant.hoyde >= spillCanvas.height){
+                firkant.yretning = -1;
+            }
+
+            // Oppdaterer xpos og ypos til objektet firkant
+            firkant.xpos = firkant.xpos + (firkant.xretning*firkant.xfart);
+            firkant.ypos = firkant.ypos + (firkant.yretning*firkant.yfart);
+        }
+
+
+        // Hendelsesfunksjoner
+        window.onkeydown = function(event){
+            console.log(event);
+            if(event.key == "ArrowLeft"){
+                firkant.xretning = -1;
+            }
+            if(event.key == "ArrowRight"){
+                firkant.xretning = 1;
+            }
+            if(event.key == "ArrowUp"){
+                firkant.yretning = -1;
+            }
+            if(event.key == "ArrowDown"){
+                firkant.yretning = 1;
+            }
+        }
+    </script>
+</body>
+</html>

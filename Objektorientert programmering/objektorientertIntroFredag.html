@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+
+      let statsminister = {
+        fornavn: "Erna",
+        etternavn: "Solberg",
+        parti: "Høyre",
+        interesser: ["Sysselsetting","Nordmenn må få fler barn","Norske interesser i EU/EØS"],
+        fulltnavn: function(){
+          return this.fornavn + " " + this.etternavn;
+        }
+      }
+
+      let statsminister2 = {
+        fornavn: "Stolt",
+        etternavn: "Jensenberg",
+        parti: "Arbeiderpartiet",
+        interesser: ["Sysselsetting","Nordmenn må få fler barn","Norske interesser i EU/EØS"],
+        fulltnavn: function(){
+          return this.fornavn + " " + this.etternavn;
+        }
+      }
+
+      console.log(statsminister.fornavn); // "Erna"
+      console.log(statsminister.interesser[1]);
+
+      console.log(statsminister2.fulltnavn());
+
+
+      // Klassedefinisjoner
+      class Statsminister{
+        constructor(fornavn,etternavn,parti){
+          this.fornavn = fornavn;
+          this.etternavn = etternavn;
+          this.parti = parti;
+        }
+        fulltnavn(){
+          return this.fornavn + " " + this.etternavn;
+        }
+        skrivFulltNavn(){
+          document.body.innerHTML += this.fulltnavn();
+        }
+      }
+
+      let kjellMagne = new Statsminister("Kjell Magne","Bondevik","KrF");
+      let groHarlem = new Statsminister("Gro","Harlem Brundtland","Arbeiderpartiet");
+
+
+      console.log(kjellMagne.fornavn);
+      console.log(kjellMagne.fulltnavn);
+
+      kjellMagne.skrivFulltNavn();
+      groHarlem.skrivFulltNavn();
+    </script>
+  </body>
+</html>
